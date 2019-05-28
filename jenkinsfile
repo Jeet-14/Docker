@@ -31,7 +31,10 @@ node {
         docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') { 
              def customImage = docker.build("jeetd/node:${env.BUILD_ID}")
 	     sh docker push customImage*/
-	     sh echo("S") 
+	    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+
         }
     } 
 
