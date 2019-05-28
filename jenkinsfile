@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("jeetd/node")
+        app = docker.build("jeetd/node:${env.BUILD_ID}")
     }
 
     stage('Test image') {
