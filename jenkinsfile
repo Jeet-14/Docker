@@ -30,8 +30,51 @@ node {
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') { 
              def customImage = docker.build("jeetd/node:${env.BUILD_ID}")
-	     sh docker push jeetd/node:${env.BUILD_ID}
+	     sh docker push customImage
         }
     } 
 
 }
+@akunaatrium
+akunaatrium commented on Apr 18, 2017
+
+I wonder why is it closed. I have exactly the same issue.
+
+Docker version is this:
+
+Client:
+ Version:      17.04.0-ce
+ API version:  1.28
+ Go version:   go1.7.5
+ Git commit:   4845c56
+ Built:        Mon Apr  3 18:07:42 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.04.0-ce
+ API version:  1.28 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   4845c56
+ Built:        Mon Apr  3 18:07:42 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+
+@PMExtra
+PMExtra commented on Jun 23, 2017 •
+
+This issue is caused by daocloud.io (It's a docker mirror & registry in China).
+
+Please try that tag your image like below to make a new tag without the daocloud.io part.
+
+docker tag daocloud.io/[daocloud_id]/[image_name] [dockerhub_id]/[image_name]
+
+Then try docker push [dockerhub_id]/[image_name].
+@peterwillcn
+peterwillcn commented on Oct 8, 2017
+
+Yes
+@Jeet-14
+
+Attach files by dragging & dropping, selecting or pasting them.
+
+
