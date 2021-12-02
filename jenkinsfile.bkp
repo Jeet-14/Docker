@@ -25,7 +25,6 @@ node {
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:
-         * First, push the image
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap */
         docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') {
